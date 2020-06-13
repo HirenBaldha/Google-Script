@@ -1,0 +1,17 @@
+function CopyDataToNewFile() {
+  var sss = SpreadsheetApp.openById('1cb4fxGiPXu4jdlKG0PMZlofBElAfnLZaywOSZHIWI2E'); // sss = source spreadsheet
+  var ss = sss.getSheetByName('Sheet2'); // ss = source sheet
+  //Get full range of data
+  var SRange = ss.getDataRange();
+  //get A1 notation identifying the range
+  var A1Range = SRange.getA1Notation();
+  //get the data values in range
+  var SData = SRange.getValues();
+
+  var tss = SpreadsheetApp.openById('1LEWK04fOKoUS6k0uBUtQSTJOy5I-bLJQxj_dOgymGSY'); // tss = target spreadsheet
+  var ts = tss.getSheetByName('eForte'); // ts = target sheet
+  ts.getRange('A:Z').clearContent();
+  //set the target range to the values of the source data
+  ts.getRange(A1Range).setValues(SData);
+
+} 
