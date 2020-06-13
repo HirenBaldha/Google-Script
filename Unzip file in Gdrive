@@ -1,0 +1,19 @@
+function Unzip() {
+  //Add folder ID to select the folder where zipped files are placed
+  var SourceFolder = DriveApp.getFolderById('13ez6AnKhD1lr9eX7Q3kakRc-nwUNeFS4')
+  //Add folder ID to save the where unzipped files to be placed
+  var DestinationFolder = DriveApp.getFolderById('13ez6AnKhD1lr9eX7Q3kakRc-nwUNeFS4')
+  //Select the Zip files from source folder using the Mimetype of ZIP
+  var ZIPFiles = SourceFolder.getFilesByType(MimeType.ZIP)
+  
+  //Loop over all the Zip files
+  while (ZIPFiles.hasNext()){
+   // Get the blob of all the zip files one by one
+    var fileBlob = ZIPFiles.next().getBlob();
+   //Use the Utilities Class to unzip the blob
+    var unZippedfile = Utilities.unzip(fileBlob);
+   //Unzip the file and save it on destination folder
+    var newDriveFile = DestinationFolder.createFile(unZippedfile[0]);
+        }
+       
+}
