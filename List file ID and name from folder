@@ -1,0 +1,33 @@
+   function listFilesInFolder() {
+     
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Input');
+  sheet.getRange('A:B').clearContent(); 
+
+   sheet.appendRow(["Name", "File-Id"]);
+
+
+//change the folder ID below to reflect your folder's ID (look in the URL when you're in your folder)
+     
+  var jjj = SpreadsheetApp.getActive().getSheetByName('Script').getRange("B3").getValue();
+    
+   
+    var folder = DriveApp.getFolderById(jjj);
+    var contents = folder.getFiles();
+
+    var cnt = 0;
+    var file;
+
+    while (contents.hasNext()) {
+        var file = contents.next();
+        cnt++;
+
+           data = [
+                file.getName(),
+                file.getId(),
+            ];
+
+            sheet.appendRow(data);
+    };
+             
+             
+};
