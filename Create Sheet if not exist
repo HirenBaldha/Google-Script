@@ -1,0 +1,7 @@
+    var sheetActive = SpreadsheetApp.openById(FilesNames);
+    var yourNewSheet = sheetActive.getSheetByName("eForte");
+
+    if (yourNewSheet == null) {
+    yourNewSheet = sheetActive.insertSheet();
+    yourNewSheet.setName("eForte");
+    }
