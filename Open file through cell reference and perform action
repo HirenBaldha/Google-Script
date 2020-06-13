@@ -1,0 +1,24 @@
+function Open_File_and_update (){
+
+  var sh = SpreadsheetApp.getActiveSheet();
+  var range = sh.getRange("B5:B").getValues();
+  var lr = range.filter(String).length;
+  
+  var jj = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = jj.getSheetByName('Script');
+
+  
+    var columntest = sh.getRange(5, 2, lr).getValues();  
+    for(var j=0; j<columntest.length ; j++){
+
+var FilesNames = sh.getRange(6+j,2).getValue();
+
+var sheetActive = SpreadsheetApp.openById(FilesNames);
+
+Lookup_Value(sheetActive);
+freezeOutput(sheetActive);
+runReplaceInSheet(sheetActive);
+
+}
+
+}
