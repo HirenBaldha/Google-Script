@@ -1,0 +1,13 @@
+function DeleZip(){
+  var folderBId = "13ez6AnKhD1lr9eX7Q3kakRc-nwUNeFS4"; // Added // Please set the folder ID of "FolderB".
+
+  var files = DriveApp.getFolderById('13ez6AnKhD1lr9eX7Q3kakRc-nwUNeFS4').searchFiles('title != "nothing"');
+  while(files.hasNext()){
+    var xFile = files.next();
+    var name = xFile.getName();
+    if ((name.indexOf('.ZIP')>-1) || (name.indexOf('.zip')>-1)){ 
+      var ID = xFile.getId();
+      Drive.Files.remove(ID); // Added // If this line is run, the original XLSX file is removed. So please be careful this.
+    }
+  }
+}
